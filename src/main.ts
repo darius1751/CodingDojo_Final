@@ -13,7 +13,7 @@ const main = async () => {
     config();
     const app = express();
     app.use(cookieParser());
-    app.use(cors({ credentials: true, origin: ['http://localhost:3000'] }));
+    app.use(cors({ credentials: true, origin: ['http://localhost:3000', 'https://codingdojo-final-frontend.onrender.com'] }));
     app.use(helmet());
     app.use(express.json());
     await openConnection();
