@@ -2,7 +2,7 @@ import { connect } from "mongoose"
 
 export const openConnection = async () => {
     try {
-        await connect(process.env.MONGO_URI || '', {
+        await connect(process.env.MONGO_URI_DEV || process.env.MONGO_URI_PROD!, {
             // maxPoolSize: 10,
             // user: process.env.MONGO_INITDB_ROOT_USERNAME,
             // pass: process.env.MONGO_INITDB_ROOT_PASSWORD,
