@@ -9,6 +9,7 @@ import { openConnection } from './config/mongoose.config';
 import { authRouter } from './routers/auth.router';
 import { userRouter } from './routers/user.router';
 import { swagger } from './swagger';
+import { movieRouter } from './routers/movie.router';
 const main = async () => {
     config();
     const app = express();
@@ -21,7 +22,7 @@ const main = async () => {
     app.use('/api-docs', serve, setup(swagger))
     app.use('/api/v1/auth', authRouter);
     app.use('/api/v1/user', userRouter);
-    // app.use('/api/v1/task', taskRouter);
+    app.use('/api/v1/movie', movieRouter);
     const port = process.env.PORT || 4001;
     app.listen(port, () => {
         console.log(`App run in port: ${port}`);

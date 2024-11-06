@@ -1,4 +1,4 @@
-import { CreateUserDto } from "../interfaces/user.interface";
+import { CreateUserDto } from "../interfaces/create-user-dto.interface";
 import { userModel } from "../models/user.model"
 import { authService } from "./auth.service";
 

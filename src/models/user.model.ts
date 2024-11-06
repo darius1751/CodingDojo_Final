@@ -1,4 +1,5 @@
 import { model, Schema, Types } from "mongoose";
+import { movieSchema } from "./movie.model";
 
 export const userSchema = new Schema({
     name: {
@@ -14,6 +15,11 @@ export const userSchema = new Schema({
     credentialId: {
         type: Types.ObjectId,
         ref: 'credentials',
+        required: true
+    },
+    movies: {
+        type: [movieSchema],
+        default: [],
         required: true
     }
 }, { timestamps: true, versionKey: false });

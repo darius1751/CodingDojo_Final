@@ -40,6 +40,13 @@ const existsEmail = async (email: string) => {
 const createAuth = async ({ email, password }: Auth) => {
     try {
         await existsEmail(email);
+        if (password.trim().length < 8) {
+            console.log({ password })
+            throw {
+                statusCode: 400,
+                message: `Password not valid include min 8 characters`
+            }
+        }
         const newPassword = await hash(password, 10);
         const newAuth = await authModel.create({ email, password: newPassword });
         return newAuth.id;
