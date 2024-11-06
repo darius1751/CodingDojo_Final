@@ -43,18 +43,32 @@ export const swagger: SwaggerOptions = {
                                     description: {
                                         type: "string",
                                     },
+                                    movies: {
+                                        type: "array",
+                                        items: {
+                                            properties: {
+                                                title: {
+                                                    type: "string"
+                                                },
+                                                year: {
+                                                    type: "integer",
+                                                    example: 2000
+                                                },
+                                                genre: {
+                                                    type: "string",
+                                                },
+                                                url_image: {
+                                                    type: "string"
+                                                },
+                                                comments: {
+                                                    type: "array"
+                                                }
+                                            }
+                                        }
+                                    },
                                     createdAt: {
                                         type: "string",
                                         format: 'timestamp'
-                                    },
-                                    status: {
-                                        type: "string",
-                                        description: "status task",
-                                        enum: [
-                                            "EARNNING",
-                                            "IN PROGRESS",
-                                            "COMPLETED"
-                                        ]
                                     },
                                     updatedAt: {
                                         type: "string",
@@ -131,39 +145,42 @@ export const swagger: SwaggerOptions = {
                 }
             }
         },
-        "/task/{userId}": {
+        "/movie/{userId}": {
             post: {
                 tags: [
-                    "task"
+                    "movie"
                 ],
-                summary: "Create one task to user",
-                description: "Create one task to user by userId",
+                summary: "Create one movie to user",
+                description: "Create one movie to user by userId",
                 produces: [
                     "application/json"
                 ],
                 parameters: [{
                     in: "body",
                     name: "body",
-                    description: "Task",
+                    description: "Movie",
                     required: true,
                     schema: {
                         type: "object",
                         required: [
-                            "description",
-                            "estimatedTime",
-                            "deadLine"
+                            "title",
+                            "year",
+                            "genre",
+                            "url_image"
                         ],
                         properties: {
-                            description: {
+                            title: {
                                 type: "string"
                             },
-                            estimatedTime: {
+                            year: {
                                 type: "integer",
-                                example: 1
+                                example: 2000
                             },
-                            deadLine: {
+                            genre: {
                                 type: "string",
-                                format: "timestamp"
+                            },
+                            url_image: {
+                                type: "string"
                             }
                         }
                     }
@@ -193,23 +210,25 @@ export const swagger: SwaggerOptions = {
                                     type: "string",
                                     example: "Mosquera"
                                 },
-                                tasks: {
+                                movies: {
                                     type: "array",
                                     items: {
                                         properties: {
-                                            _id: {
+                                            title: {
                                                 type: "string"
                                             },
-                                            description: {
-                                                type: "string"
-                                            },
-                                            estimatedTime: {
+                                            year: {
                                                 type: "integer",
-                                                example: 1
+                                                example: 2000
                                             },
-                                            deadLine: {
+                                            genre: {
                                                 type: "string",
-                                                format: "timestamp"
+                                            },
+                                            url_image: {
+                                                type: "string"
+                                            },
+                                            comments: {
+                                                type: "array"
                                             }
                                         }
                                     }
@@ -229,13 +248,13 @@ export const swagger: SwaggerOptions = {
                 }
             }
         },
-        "/task/{userId}/{id}": {
+        "/movie/{userId}/{id}": {
             put: {
                 tags: [
-                    "task"
+                    "movie"
                 ],
-                summary: "Update one task to user",
-                description: "Update one task to user by userId",
+                summary: "Update one movie to user",
+                description: "Update one movie to user by userId",
                 produces: [
                     "application/json"
                 ],
@@ -243,22 +262,24 @@ export const swagger: SwaggerOptions = {
                     {
                         in: "body",
                         name: "body",
-                        description: "Task",
+                        description: "Movie",
                         required: true,
                         schema: {
                             type: "object",
                             required: [],
                             properties: {
-                                description: {
+                                title: {
                                     type: "string"
                                 },
-                                estimatedTime: {
+                                year: {
                                     type: "integer",
-                                    example: 1
+                                    example: 2000
                                 },
-                                deadLine: {
+                                genre: {
                                     type: "string",
-                                    format: "timestamp"
+                                },
+                                url_image: {
+                                    type: "string"
                                 }
                             }
                         }
@@ -295,23 +316,22 @@ export const swagger: SwaggerOptions = {
                                     type: "string",
                                     example: "Mosquera"
                                 },
-                                tasks: {
+                                movies: {
                                     type: "array",
                                     items: {
                                         properties: {
-                                            _id: {
+                                            title: {
                                                 type: "string"
                                             },
-                                            description: {
-                                                type: "string"
-                                            },
-                                            estimatedTime: {
+                                            year: {
                                                 type: "integer",
-                                                example: 1
+                                                example: 2000
                                             },
-                                            deadLine: {
+                                            genre: {
                                                 type: "string",
-                                                format: "timestamp"
+                                            },
+                                            url_image: {
+                                                type: "string"
                                             }
                                         }
                                     }
@@ -332,10 +352,10 @@ export const swagger: SwaggerOptions = {
             },
             patch: {
                 tags: [
-                    "task"
+                    "movie"
                 ],
-                summary: "Update one task to user",
-                description: "Update one task to user by userId",
+                summary: "Update one movie to user",
+                description: "Update one movie to user by userId",
                 produces: [
                     "application/json"
                 ],
@@ -343,22 +363,24 @@ export const swagger: SwaggerOptions = {
                     {
                         in: "body",
                         name: "body",
-                        description: "Task",
+                        description: "Movie",
                         required: true,
                         schema: {
                             type: "object",
                             required: [],
                             properties: {
-                                description: {
+                                title: {
                                     type: "string"
                                 },
-                                estimatedTime: {
+                                year: {
                                     type: "integer",
-                                    example: 1
+                                    example: 2000
                                 },
-                                deadLine: {
+                                genre: {
                                     type: "string",
-                                    format: "timestamp"
+                                },
+                                url_image: {
+                                    type: "string"
                                 }
                             }
                         }
@@ -395,23 +417,25 @@ export const swagger: SwaggerOptions = {
                                     type: "string",
                                     example: "Mosquera"
                                 },
-                                tasks: {
+                                movies: {
                                     type: "array",
                                     items: {
                                         properties: {
-                                            _id: {
+                                            title: {
                                                 type: "string"
                                             },
-                                            description: {
-                                                type: "string"
-                                            },
-                                            estimatedTime: {
+                                            year: {
                                                 type: "integer",
-                                                example: 1
+                                                example: 2000
                                             },
-                                            deadLine: {
+                                            genre: {
                                                 type: "string",
-                                                format: "timestamp"
+                                            },
+                                            url_image: {
+                                                type: "string"
+                                            },
+                                            comments: {
+                                                type: "array"
                                             }
                                         }
                                     }
@@ -432,10 +456,10 @@ export const swagger: SwaggerOptions = {
             },
             delete: {
                 tags: [
-                    "task"
+                    "movie"
                 ],
-                summary: "Delete one task to user",
-                description: "Delete one task to user by userId",
+                summary: "Delete one movie to user",
+                description: "Delete one movie to user by userId",
                 produces: [
                     "application/json"
                 ],
@@ -443,14 +467,14 @@ export const swagger: SwaggerOptions = {
                     {
                         name: "userId",
                         in: "path",
-                        description: "ID of the own Task",
+                        description: "ID of the own Movie",
                         required: true,
                         type: "string",
                     },
                     {
                         name: "id",
                         in: "path",
-                        description: "ID of the Task",
+                        description: "ID of the Movie",
                         required: true,
                         type: "string",
                     }
@@ -472,23 +496,25 @@ export const swagger: SwaggerOptions = {
                                     type: "string",
                                     example: "Mosquera"
                                 },
-                                tasks: {
+                                movies: {
                                     type: "array",
                                     items: {
                                         properties: {
-                                            _id: {
+                                            title: {
                                                 type: "string"
                                             },
-                                            description: {
-                                                type: "string"
-                                            },
-                                            estimatedTime: {
+                                            year: {
                                                 type: "integer",
-                                                example: 1
+                                                example: 2000
                                             },
-                                            deadLine: {
+                                            genre: {
                                                 type: "string",
-                                                format: "timestamp"
+                                            },
+                                            url_image: {
+                                                type: "string"
+                                            },
+                                            comments: {
+                                                type: "array"
                                             }
                                         }
                                     }
@@ -508,13 +534,13 @@ export const swagger: SwaggerOptions = {
                 }
             },
         },
-        "/task/except/{userId}": {
+        "/movie/except/{userId}": {
             get: {
                 tags: [
-                    "task"
+                    "movie"
                 ],
-                summary: "Find all tasks except userId",
-                description: "Find all tasks in the DB except tasks of the userId",
+                summary: "Find all movies not owner userId",
+                description: "Find all movies in the DB not owner userId of the userId",
                 produces: [
                     "application/json"
                 ],
@@ -522,7 +548,7 @@ export const swagger: SwaggerOptions = {
                     {
                         name: "userId",
                         in: "path",
-                        description: "ID of the own Tasks exclude",
+                        description: "ID of the own movies exclude",
                         required: true,
                         type: "string",
                     }
@@ -534,35 +560,232 @@ export const swagger: SwaggerOptions = {
                             type: "array",
                             items: {
                                 properties: {
-                                    _id: {
-                                        type: "string",
+                                    title: {
+                                        type: "string"
                                     },
-                                    estimatedTime: {
+                                    year: {
                                         type: "integer",
-                                        example: 1
+                                        example: 2000
                                     },
-                                    description: {
+                                    genre: {
                                         type: "string",
                                     },
-                                    createdAt: {
-                                        type: "string",
-                                        format: 'timestamp'
+                                    url_image: {
+                                        type: "string"
                                     },
-                                    status: {
-                                        type: "string",
-                                        description: "status task",
-                                        enum: [
-                                            "EARNNING",
-                                            "IN PROGRESS",
-                                            "COMPLETED"
-                                        ]
-                                    },
-                                    updatedAt: {
-                                        type: "string",
-                                        format: 'timestamp'
-                                    },
+                                    comments: {
+                                        type: "array"
+                                    }
                                 },
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/movie/comment/{userId}/{id}": {
+            put: {
+                tags: [
+                    "movie"
+                ],
+                summary: "Update one movie to user",
+                description: "Update one movie to user by userId",
+                produces: [
+                    "application/json"
+                ],
+                parameters: [
+                    {
+                        in: "body",
+                        name: "body",
+                        description: "Movie",
+                        required: true,
+                        schema: {
+                            type: "object",
+                            required: [
+                                "owner",
+                                "comment",
+                                "rank"
+                            ],
+                            properties: {
+                                owner: {
+                                    type: "string"
+                                },
+                                comment: {
+                                    type: "string",
+                                    example: "Una excelente pelicula, realmente muy emocionante"
+                                },
+                                rank: {
+                                    type: "integer",
+                                    example: 10
+                                },
+                            }
+                        }
+                    },
+                    {
+                        name: "userId",
+                        in: "path",
+                        description: "ID of the own Movie",
+                        required: true,
+                        type: "string",
+                    },
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "ID of the Movie",
+                        required: true,
+                        type: "string",
+                    }
+                ],
+                responses: {
+                    "200": {
+                        description: "successful operation",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                _id: {
+                                    type: "string",
+                                },
+                                name: {
+                                    type: "string",
+                                    example: "Luis"
+                                },
+                                lastname: {
+                                    type: "string",
+                                    example: "Mosquera"
+                                },
+                                movies: {
+                                    type: "array",
+                                    items: {
+                                        properties: {
+                                            title: {
+                                                type: "string"
+                                            },
+                                            year: {
+                                                type: "integer",
+                                                example: 2000
+                                            },
+                                            genre: {
+                                                type: "string",
+                                            },
+                                            url_image: {
+                                                type: "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                createdAt: {
+                                    type: "string",
+                                    format: 'timestamp'
+                                },
+                                updatedAt: {
+                                    type: "string",
+                                    format: 'timestamp'
+                                },
+                            },
+
+                        }
+                    }
+                }
+            },
+            patch: {
+                tags: [
+                    "movie"
+                ],
+                summary: "Update one movie to user",
+                description: "Update one movie to user by userId",
+                produces: [
+                    "application/json"
+                ],
+                parameters: [
+                    {
+                        in: "body",
+                        name: "body",
+                        description: "Movie",
+                        required: true,
+                        schema: {
+                            type: "object",
+                            required: [
+                                "owner",
+                                "comment",
+                                "rank"
+                            ],
+                            properties: {
+                                owner: {
+                                    type: "string"
+                                },
+                                comment: {
+                                    type: "string",
+                                    example: "Una excelente pelicula, realmente muy emocionante"
+                                },
+                                rank: {
+                                    type: "integer",
+                                    example: 10
+                                },
+                            }
+                        }
+                    },
+                    {
+                        name: "userId",
+                        in: "path",
+                        description: "ID of the own Movie",
+                        required: true,
+                        type: "string",
+                    },
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "ID of the Movie",
+                        required: true,
+                        type: "string",
+                    }
+                ],
+                responses: {
+                    "200": {
+                        description: "successful operation",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                _id: {
+                                    type: "string",
+                                },
+                                name: {
+                                    type: "string",
+                                    example: "Luis"
+                                },
+                                lastname: {
+                                    type: "string",
+                                    example: "Mosquera"
+                                },
+                                movies: {
+                                    type: "array",
+                                    items: {
+                                        properties: {
+                                            title: {
+                                                type: "string"
+                                            },
+                                            year: {
+                                                type: "integer",
+                                                example: 2000
+                                            },
+                                            genre: {
+                                                type: "string",
+                                            },
+                                            url_image: {
+                                                type: "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                createdAt: {
+                                    type: "string",
+                                    format: 'timestamp'
+                                },
+                                updatedAt: {
+                                    type: "string",
+                                    format: 'timestamp'
+                                },
+                            },
+
                         }
                     }
                 }
